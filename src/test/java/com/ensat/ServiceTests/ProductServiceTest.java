@@ -35,6 +35,14 @@ public class ProductServiceTest {
         Assertions.assertEquals("x2",product1.getProductId());
     }
 
+    @Test
+    public void saveProduct_Success_test(){
+        Product product = new Product(1,1,"x2","poco",100);
+        when(productRepository.save(product)).thenReturn(product);
+        Product product1 = productService.saveProduct(product);
+
+        Assertions.assertEquals(1,product1.getId());
+    }
 
 
 
