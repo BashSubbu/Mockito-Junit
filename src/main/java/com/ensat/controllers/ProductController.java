@@ -1,7 +1,10 @@
 package com.ensat.controllers;
 
 import com.ensat.entities.Product;
+import com.ensat.manager.ProductManager;
 import com.ensat.services.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
      @Autowired
      private ProductService productService;
+     @Autowired
+     private ProductManager productManager;
+     Logger logger = LoggerFactory.getLogger(ProductController.class);
 
    
 
@@ -26,7 +32,7 @@ public class ProductController {
    @GetMapping("/")
     public String list(Model model) {
         model.addAttribute("products", productService.listAllProducts());
-        System.out.println("Returning products:");
+        logger.info("returning products");
         return "products";
     }
 
@@ -68,7 +74,7 @@ public class ProductController {
      * @param product
      * @return
      */
-    @RequestMapping(value = "product", method = RequestMethod.POST)
+    @PostMapping
     public String saveProduct(Product product) {
         productService.saveProduct(product);
         return "redirect:/product/" + product.getId();
@@ -82,7 +88,7 @@ public class ProductController {
      */
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Integer id) {
-        productService.deleteProduct(id);
+        productManager.deleteProduct(id);
         return "redirect:/products";
     }
 
