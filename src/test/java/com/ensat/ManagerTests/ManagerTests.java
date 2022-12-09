@@ -70,7 +70,16 @@ class ManagerTests {
         output = productManager.getProductInformationWithUserInformation(1);
         jsonObject = (JsonObject) new JsonParser().parse(output);
         useName = jsonObject.get("userName").getAsString();
-        Assertions.assertEquals("siva",useName);
+        Assertions.assertEquals("siva", useName);
+    }
+
+    @Test
+    void getUserName_Success_Tes() {
+        User user = new User(1, "siva", "India");
+        String userName = null;
+        when(userService.getUserById(1)).thenReturn(user);
+        userName = productManager.getUserInformation(1);
+        Assertions.assertEquals("siva", userName);
     }
 
 }
