@@ -24,7 +24,7 @@ public class ProductServiceTest {
 
     @Test
     public void getProductById_Success_Test(){
-        Product product = new Product(1,1,"x2","poco",100);
+        Product product = new Product(1,1,"x2","poco",100,1);
         when(productRepository.findById(1)).thenReturn(Optional.of(product));
         Product product1 = productService.getProductById(1);
 
@@ -33,7 +33,7 @@ public class ProductServiceTest {
 
     @Test
     public void saveProduct_Success_test(){
-        Product product = new Product(1,1,"x2","poco",100);
+        Product product = new Product(1,1,"x2","poco",100,1);
         when(productRepository.save(product)).thenReturn(product);
         Product product1 = productService.saveProduct(product);
 

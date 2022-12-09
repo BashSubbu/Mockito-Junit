@@ -8,26 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
-/**
- * Product entity.
- */
 @Entity
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-public class Product {
-
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    @Version
-    private Integer version;
-
-    private String productId;
     private String name;
-    private int price;
-    private int userId;
+    private String country;
+
 }
