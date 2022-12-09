@@ -4,10 +4,8 @@ import com.ensat.entities.Product;
 import com.ensat.entities.User;
 import com.ensat.manager.ProductManager;
 import com.ensat.services.ProductServiceImpl;
-import com.ensat.services.UserService;
 import com.ensat.services.UserServiceImpl;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Assertions;
@@ -59,7 +57,6 @@ class ManagerTests {
     @Test
     void getProductInformationWithUser_Success_Test() {
         String output = null;
-        Gson gson = new Gson();
         JsonObject jsonObject = null;
         User user = new User(1, "siva", "India");
         Product product = new Product(1, 1, "x2", "poco", 100, 1);
