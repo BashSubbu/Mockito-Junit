@@ -1,4 +1,4 @@
-package com.ensat;
+package com.ensat.ServiceTests;
 
 import com.ensat.entities.Product;
 import com.ensat.repositories.ProductRepository;
