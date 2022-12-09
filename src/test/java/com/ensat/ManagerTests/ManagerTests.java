@@ -5,7 +5,6 @@ import com.ensat.entities.User;
 import com.ensat.manager.ProductManager;
 import com.ensat.services.ProductServiceImpl;
 import com.ensat.services.UserServiceImpl;
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Assertions;
@@ -25,11 +24,12 @@ class ManagerTests {
     private UserServiceImpl userService;
     @InjectMocks
     private ProductManager productManager;
+    Product product = new Product(1, 1, "x2", "poco", 100, 1);
+    User user = new User(1, "siva", "India");
 
     @Test
     void deleteAsset_Success_Test() {
         boolean isDeleted = false;
-        Product product = new Product(1, 1, "x2", "poco", 100, 1);
         when(productService.getProductById(1)).thenReturn(product);
         isDeleted = productManager.deleteProduct(1);
         Assertions.assertEquals(true, isDeleted);
@@ -46,7 +46,6 @@ class ManagerTests {
     @Test
     void updateProduct_Success_Test() {
         boolean isUpdated = false;
-        Product product = new Product(1, 1, "x2", "poco", 100, 1);
         Product updatedProduct = new Product(1, 1, "x2", "poco1", 100, 1);
         when(productService.getProductById(1)).thenReturn(product);
         when(productService.saveProduct(product)).thenReturn(updatedProduct);
@@ -58,8 +57,6 @@ class ManagerTests {
     void getProductInformationWithUser_Success_Test() {
         String output = null;
         JsonObject jsonObject = null;
-        User user = new User(1, "siva", "India");
-        Product product = new Product(1, 1, "x2", "poco", 100, 1);
         String useName = null;
 
         when(productService.getProductById(1)).thenReturn(product);
@@ -72,7 +69,6 @@ class ManagerTests {
 
     @Test
     void getUserName_Success_Tes() {
-        User user = new User(1, "siva", "India");
         String userName = null;
         when(userService.getUserById(1)).thenReturn(user);
         userName = productManager.getUserInformation(1);
