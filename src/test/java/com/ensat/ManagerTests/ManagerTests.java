@@ -34,6 +34,15 @@ public class ManagerTests {
         isDeleted = productManager.deleteProduct(1);
         Assertions.assertEquals(false,isDeleted);
     }
-
+    @Test
+    public void updateProduct_Success_Test(){
+        boolean isUpdated = false;
+        Product product = new Product(1,1,"x2","poco",100);
+        Product updatedProduct = new Product(1,1,"x2","poco1",100);
+        when(productService.getProductById(1)).thenReturn(product);
+        when(productService.saveProduct(product)).thenReturn(updatedProduct);
+        isUpdated = productManager.updateProduct(1,updatedProduct);
+        Assertions.assertEquals(true,isUpdated);
+    }
 
 }

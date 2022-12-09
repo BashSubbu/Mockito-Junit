@@ -19,4 +19,21 @@ public class ProductManager {
         return isDeleted;
     }
 
+    public boolean updateProduct(int id,Product updateProduct){
+        boolean isUpdated = false;
+        Product product = null;
+        String productName = updateProduct.getName();
+        Product updatedProduct = null;
+        product = productService.getProductById(id);
+        if(product!=null){
+            product.setName(productName);
+            updatedProduct = productService.saveProduct(product);
+            if(updatedProduct!=null) {
+                isUpdated = true;
+            }
+        }
+        return isUpdated;
+    }
+
+
 }
