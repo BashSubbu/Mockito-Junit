@@ -32,7 +32,7 @@ class ManagerTests {
         boolean isDeleted = false;
         when(productService.getProductById(1)).thenReturn(product);
         isDeleted = productManager.deleteProduct(1);
-        Assertions.assertEquals(true, isDeleted);
+        Assertions.assertTrue(isDeleted);
     }
 
     @Test
@@ -40,7 +40,7 @@ class ManagerTests {
         boolean isDeleted = false;
         when(productService.getProductById(1)).thenReturn(null);
         isDeleted = productManager.deleteProduct(1);
-        Assertions.assertEquals(false, isDeleted);
+        Assertions.assertFalse(isDeleted);
     }
 
     @Test
@@ -50,7 +50,7 @@ class ManagerTests {
         when(productService.getProductById(1)).thenReturn(product);
         when(productService.saveProduct(product)).thenReturn(updatedProduct);
         isUpdated = productManager.updateProduct(1, updatedProduct);
-        Assertions.assertEquals(true, isUpdated);
+        Assertions.assertTrue(isUpdated);
     }
 
     @Test
